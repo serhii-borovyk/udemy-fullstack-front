@@ -18,11 +18,11 @@ export default function (state = initialState, action) {
                 project: action.payload
             };
         case ON_INPUT_CHANGE:
-            const {project} = state;
             const {name, value} = action.payload;
-            project[name] = value;
+            state.project[name] = value;
             return {
-                ...state
+                ...state,
+                project: {...state.project}
             };
         default:
             return state;

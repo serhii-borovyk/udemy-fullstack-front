@@ -6,8 +6,6 @@ import * as classnames from "classnames";
 
 class UpdateProject extends Component {
 
-
-
     componentDidMount() {
         const {id} = this.props.match.params;
         this.props.getProject(id, this.props.history);
@@ -15,6 +13,11 @@ class UpdateProject extends Component {
 
     handleChange = e => {
         this.props.onInputChange(e.target.name, e.target.value)
+    };
+
+    onSubmit = e => {
+        e.preventDefault();
+        this.props.updateProject(this.props.project);
     };
 
     render() {
