@@ -38,11 +38,15 @@ export const getProjects = () => async dispatch => {
 };
 
 export const getProject = (id, history) => async dispatch => {
-    const res = await axios.get(proxy + "/project/" + id);
-    dispatch ({
-        type: GET_PROJECT,
-        payload: res.data
-    })
+    try {
+        const res = await axios.get(proxy + "/project/" + id);
+        dispatch({
+            type: GET_PROJECT,
+            payload: res.data
+        })
+    } catch (e) {
+        history.push('/dashboard')
+    }
 };
 
 export const onInputChange = (name, value) => dispatch => {
