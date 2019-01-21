@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ERRORS, GET_PROJECT, GET_PROJECTS, ON_INPUT_CHANGE} from "./types";
+import {DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS, ON_INPUT_CHANGE} from "./types";
 
 const proxy = "http://localhost:8080/api";
 
@@ -31,7 +31,7 @@ export const updateProject = (project, history) => async dispatch => {
 
 export const getProjects = () => async dispatch => {
     const res = await axios.get(proxy + "/project/all");
-    dispatch ({
+    dispatch({
         type: GET_PROJECTS,
         payload: res.data
     })
@@ -47,6 +47,15 @@ export const getProject = (id, history) => async dispatch => {
     } catch (e) {
         history.push('/dashboard')
     }
+};
+
+export const deleteProject = (id) => async dispatch => {
+    console.log("DELETE PROJECT ACTION", id);
+    await axios.delete(proxy + "/project/" + id);
+    dispatch({
+        type: DELETE_PROJECT,
+        payload: id
+    })
 };
 
 export const onInputChange = (name, value) => dispatch => {
