@@ -17,7 +17,7 @@ class UpdateProject extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        this.props.updateProject(this.props.project);
+        this.props.updateProject(this.props.project, this.props.history);
     };
 
     render() {
