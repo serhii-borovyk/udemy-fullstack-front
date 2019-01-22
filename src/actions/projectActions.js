@@ -1,11 +1,10 @@
 import axios from 'axios';
 import {DELETE_PROJECT, GET_ERRORS, GET_PROJECT, GET_PROJECTS, ON_INPUT_CHANGE} from "./types";
 
-const proxy = "http://localhost:8080/api";
 
 export const createProject = (project, history) => async dispatch => {
     try {
-        const res = await axios.post(proxy + "/project", project);
+        const res = await axios.post("/project", project);
         console.log(res.data);
         history.push("/dashboard")
     } catch (err) {
@@ -18,7 +17,7 @@ export const createProject = (project, history) => async dispatch => {
 
 export const updateProject = (project, history) => async dispatch => {
     try {
-        const res = await axios.post(proxy + "/project", project);
+        const res = await axios.put("/project", project);
         console.log(res.data);
         history.push("/dashboard")
     } catch (err) {
@@ -30,7 +29,7 @@ export const updateProject = (project, history) => async dispatch => {
 };
 
 export const getProjects = () => async dispatch => {
-    const res = await axios.get(proxy + "/project/all");
+    const res = await axios.get("/project/all");
     dispatch({
         type: GET_PROJECTS,
         payload: res.data
@@ -39,7 +38,7 @@ export const getProjects = () => async dispatch => {
 
 export const getProject = (id, history) => async dispatch => {
     try {
-        const res = await axios.get(proxy + "/project/" + id);
+        const res = await axios.get("/project/" + id);
         dispatch({
             type: GET_PROJECT,
             payload: res.data
@@ -50,8 +49,8 @@ export const getProject = (id, history) => async dispatch => {
 };
 
 export const deleteProject = (id) => async dispatch => {
-    console.log("DELETE PROJECT ACTION", id);
-    await axios.delete(proxy + "/project/" + id);
+
+    await axios.delete("/project/" + id);
     dispatch({
         type: DELETE_PROJECT,
         payload: id
