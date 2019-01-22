@@ -5,21 +5,14 @@ import PropTypes from "prop-types"
 import * as classnames from "classnames";
 
 class AddProject extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            projectName: "",
-            projectIdentifier: "",
-            description: "",
-            startDate: "",
-            endDate: "",
-            errors: {}
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        nextProps.errors && this.setState({errors: nextProps.errors})
-    }
+    state = {
+        projectName: "",
+        projectIdentifier: "",
+        description: "",
+        startDate: "",
+        endDate: "",
+        errors: {}
+    };
 
     onChange = e => {
         this.setState({
@@ -40,7 +33,7 @@ class AddProject extends Component {
     };
 
     render() {
-        const {errors} = this.state;
+        const {errors} = this.props;
         return (
             <div className="project">
                 <div className="container">
